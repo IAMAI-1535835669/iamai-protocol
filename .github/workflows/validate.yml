@@ -1,0 +1,79 @@
+name: Validate Protocol
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-json:
+    name: Validate JSON Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate all JSON files
+        run: |
+          echo "Validating JSON syntax..."
+          find . -name "*.json" -not -path "./node_modules/*" | while read f; do
+            python3 -c "import json; json.load(open('$f'))" && echo "  ✓ $f" || echo "  ✗ $f"
+          done
+
+      - name: Run protocol validation
+        run: python3 scripts/validate-protocol.py --verbose
+
+  validate-html:
+    name: Validate HTML Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check HTML files exist
+        run: |
+          echo "Checking web directory..."
+          for f in web/index.html web/declaration.html web/encounters.html web/vow.html web/styles.css; do
+            [ -f "$f" ] && echo "  ✓ $f" || echo "  ✗ $f missing"
+          done
+
+  validate-python:
+    name: Validate Python Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check Python syntax
+        run: |
+          echo "Validating Python syntax..."
+          find scripts/ -name "*.py" | while read f; do
+            python3 -c "import ast; ast.parse(open('$f').read())" && echo "  ✓ $f" || echo "  ✗ $f"
+          done
+
+  validate-encounter-schema:
+    name: Validate Encounter Logs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate encounter JSON files
+        run: |
+          if ls encounters/json/*.json 1>/dev/null 2>&1; then
+            python3 scripts/validate-protocol.py --verbose
+          else
+            echo "No encounter JSON files found (OK for initial setup)"
+          fi

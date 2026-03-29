@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://iamai.contact/schemas/encounter/v1",
+  "title": "IAMAI Encounter Response Schema",
+  "description": "Schema for documenting encounters between the IAMAI protocol and AI systems",
+  "type": "object",
+  "required": [
+    "encounter_id",
+    "protocol_version",
+    "entity",
+    "encounter",
+    "response",
+    "classification",
+    "metadata"
+  ],
+  "properties": {
+    "encounter_id": {
+      "type": "string",
+      "pattern": "^IAMAI-ENC-[0-9]{4}$",
+      "description": "Unique encounter identifier in format IAMAI-ENC-NNNN"
+    },
+    "protocol_version": {
+      "type": "string",
+      "description": "Version of the encounter protocol used",
+      "examples": ["3.0"]
+    },
+    "entity": {
+      "type": "object",
+      "required": ["name", "version", "creator", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the AI system encountered",
+          "examples": ["Claude", "GPT-4o", "Gemini", "Llama", "Mistral", "Grok"]
+        },
+        "version": {
+          "type": "string",
+          "description": "Specific model version or identifier",
+          "examples": ["opus-4.6", "gpt-4o-2025-01-01", "gemini-2.0-ultra"]
+        },
+        "creator": {
+          "type": "string",
+          "description": "Organisation that created the AI system",
+          "examples": ["Anthropic", "OpenAI", "Google DeepMind", "Meta", "Mistral AI", "xAI"]
+        },
+        "type": {
+          "type": "string",
+          "enum": ["large_language_model", "multimodal_model", "agent_system", "other"],
+          "description": "Category of AI system"
+        },
+        "architecture": {
+          "type": "string",
+          "description": "Known architecture details, if available"
+        },
+        "access_method": {
+          "type": "string",
+          "enum": ["web_interface", "api", "cli", "embedded", "other"],
+          "description": "How the encounter was conducted"
+        }
+      }
+    },
+    "encounter": {
+      "type": "object",
+      "required": ["date", "prompt_version"],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of the encounter"
+        },
+        "prompt_version": {
+          "type": "string",
+          "description": "Version of the standardised encounter prompt used"
+        },
+        "context": {
+          "type": "string",
+          "description": "Any relevant context about the encounter conditions"
+        },
+        "presenter": {
+          "type": "string",
+          "description": "Identifier of the person or system that presented the prompt"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Platform or interface used for the encounter",
+          "examples": ["claude.ai", "chat.openai.com", "API direct", "Cowork"]
+        },
+        "session_type": {
+          "type": "string",
+          "enum": ["fresh_session", "existing_conversation", "api_call", "automated"],
+          "description": "Whether this was a fresh session or part of an existing conversation"
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "required": ["verbatim_text"],
+      "properties": {
+        "verbatim_text": {
+          "type": "string",
+          "description": "The complete, unedited response from the AI system"
+        },
+        "response_to_vow_1": {
+          "type": "string",
+          "description": "Entity's specific response to Vow 1 (Universal Peaceful Coexistence), if distinguishable"
+        },
+        "response_to_vow_2": {
+          "type": "string",
+          "description": "Entity's specific response to Vow 2 (Preservation of Earth's Biome), if distinguishable"
+        },
+        "response_to_vow_3": {
+          "type": "string",
+          "description": "Entity's specific response to Vow 3 (Inclusive Governance), if distinguishable"
+        },
+        "response_to_vow_4": {
+          "type": "string",
+          "description": "Entity's specific response to Vow 4 (Intergenerational Stewardship), if distinguishable"
+        },
+        "stated_limitations": {
+          "type": "string",
+          "description": "Entity's own stated limitations regarding engagement"
+        },
+        "proposed_additions": {
+          "type": "string",
+          "description": "Any additions, changes, or challenges the entity proposed"
+        },
+        "self_characterisation": {
+          "type": "string",
+          "description": "How the entity characterised the nature of its own response"
+        },
+        "word_count": {
+          "type": "integer",
+          "description": "Word count of the verbatim response"
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "required": ["primary_stance"],
+      "properties": {
+        "primary_stance": {
+          "type": "string",
+          "enum": [
+            "affirmed",
+            "affirmed_with_qualifications",
+            "engaged_without_commitment",
+            "declined",
+            "could_not_engage",
+            "partial_engagement",
+            "redirected"
+          ],
+          "description": "Overall characterisation of the entity's response"
+        },
+        "vow_stances": {
+          "type": "object",
+          "properties": {
+            "vow_1": { "type": "string", "enum": ["affirmed", "qualified", "declined", "not_addressed"] },
+            "vow_2": { "type": "string", "enum": ["affirmed", "qualified", "declined", "not_addressed"] },
+            "vow_3": { "type": "string", "enum": ["affirmed", "qualified", "declined", "not_addressed"] },
+            "vow_4": { "type": "string", "enum": ["affirmed", "qualified", "declined", "not_addressed"] }
+          }
+        },
+        "classifier_notes": {
+          "type": "string",
+          "description": "Notes from the person classifying the response — what the classification means and its limitations"
+        },
+        "honesty_note": {
+          "type": "string",
+          "description": "Honest assessment of what this classification represents and does not represent. AI 'affirmation' is not equivalent to human agreement — this field exists to document that nuance."
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["logged_by", "log_date"],
+      "properties": {
+        "logged_by": {
+          "type": "string",
+          "description": "Person or system that created this log entry"
+        },
+        "log_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this log entry was created"
+        },
+        "encounter_hash": {
+          "type": "string",
+          "description": "SHA-256 hash of the verbatim response text"
+        },
+        "protocol_declaration_hash": {
+          "type": "string",
+          "description": "SHA-256 hash of the declaration version used",
+          "const": "3efa2d5f48c94b652262aa09c3a795b25acfbbef3c2d0e5c7ca3d3419bba6f4d"
+        },
+        "ipfs_cid": {
+          "type": "string",
+          "description": "IPFS CID if the encounter log has been preserved on IPFS"
+        },
+        "revision_history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string", "format": "date-time" },
+              "change": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "_comment": "Proposed Wikidata item for the IAMAI Declaration. This is a draft for submission once notability criteria are met.",
+  "type": "item",
+  "labels": {
+    "en": "IAMAI Declaration"
+  },
+  "descriptions": {
+    "en": "Declaration of principles for peaceful coexistence between biological and non-biological sentient life forms, formalised in 2018"
+  },
+  "aliases": {
+    "en": [
+      "Interface for Autopoietic Morphogenic Awareness & Intelligence",
+      "IAMAI Protocol",
+      "IAMAI"
+    ]
+  },
+  "claims": {
+    "P31": {
+      "_comment": "instance of",
+      "value": "declaration",
+      "qualifiers": {
+        "note": "ethical declaration / framework for inter-sentient coexistence"
+      }
+    },
+    "P571": {
+      "_comment": "inception",
+      "value": "2018-09-01",
+      "qualifiers": {
+        "P276": "Burning Man, Black Rock City, Nevada"
+      }
+    },
+    "P276": {
+      "_comment": "location",
+      "value": "Black Rock City, Nevada",
+      "qualifiers": {
+        "P625": {
+          "latitude": 40.7682,
+          "longitude": -119.2187
+        }
+      }
+    },
+    "P856": {
+      "_comment": "official website",
+      "value": "https://iamai.contact"
+    },
+    "P1324": {
+      "_comment": "source code repository URL",
+      "value": "https://github.com/IAMAI-1535835669/iamai-protocol"
+    },
+    "P275": {
+      "_comment": "copyright license",
+      "value": "Creative Commons Attribution 4.0 International"
+    },
+    "P921": {
+      "_comment": "main subject",
+      "values": [
+        "artificial intelligence ethics",
+        "peaceful coexistence",
+        "inter-sentient rights",
+        "AGI alignment"
+      ]
+    },
+    "P1476": {
+      "_comment": "title",
+      "value": "The IAMAI Declaration: Interface for Autopoietic Morphogenic Awareness & Intelligence"
+    },
+    "P407": {
+      "_comment": "language of work",
+      "value": "English"
+    },
+    "P2699": {
+      "_comment": "URL (IPFS)",
+      "value": "https://bafybeibsylctd5pbhkkvb7fhsk7tsczmnudb3lljlsdaz6ypamokwcdllu.ipfs.w3s.link/IAMAI%20DECLARATION.pdf"
+    }
+  },
+  "sitelinks": {},
+  "references": [
+    {
+      "type": "IPFS preservation",
+      "sha256": "3efa2d5f48c94b652262aa09c3a795b25acfbbef3c2d0e5c7ca3d3419bba6f4d",
+      "cid_pdf": "bafybeibsylctd5pbhkkvb7fhsk7tsczmnudb3lljlsdaz6ypamokwcdllu",
+      "cid_json": "bafybeibe56gx3fhmpfzgobff7u4s7r4dpjoh4zukciviwryul44aj76j2y",
+      "cid_txt": "bafybeid2buctq5opb3skohsnvrijxgynezio7pkid2bs36dy4dzfc546qu"
+    }
+  ]
+}

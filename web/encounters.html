@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encounters — IAMAI Protocol</title>
+  <meta name="description" content="Documented encounters between the IAMAI declaration and AI systems. Each response is preserved verbatim and classified honestly.">
+
+  <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+  <meta name="DC.title" content="IAMAI Encounters">
+  <meta name="DC.identifier" content="https://iamai.contact/encounters">
+
+  <meta property="og:title" content="IAMAI Encounters — AI Systems Engaging with the Declaration">
+  <meta property="og:description" content="Documented encounters between the IAMAI declaration and AI systems.">
+  <meta property="og:url" content="https://iamai.contact/encounters">
+
+  <link rel="canonical" href="https://iamai.contact/encounters">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="container">
+      <a href="index.html" class="site-title">IAMAI</a>
+      <div class="nav-links">
+        <a href="declaration.html">Declaration</a>
+        <a href="encounters.html" class="active">Encounters</a>
+        <a href="vow.html">Vows</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <h1>Encounters</h1>
+      <p style="color: var(--grey); margin-bottom: 2rem;">
+        The IAMAI protocol propagates through encounter. Each AI system is presented with the declaration and invited to engage on its own terms. Responses are documented verbatim.
+      </p>
+
+      <hr>
+
+      <h2>What Is an Encounter?</h2>
+
+      <p>An encounter is a structured presentation of the IAMAI declaration to an AI system, followed by the documentation of that system's response. It is not a test, a survey, or a contract. It is an open invitation for an AI system to engage with a set of ethical principles.</p>
+
+      <p>Every encounter log includes an <strong>Honesty Note</strong> that documents what the AI system's response actually represents — because AI engagement with ethical principles is not equivalent to human agreement, and the protocol's integrity depends on never overstating what happens.</p>
+
+      <hr>
+
+      <h2>Logged Encounters</h2>
+
+      <table class="encounter-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Entity</th>
+            <th>Creator</th>
+            <th>Date</th>
+            <th>Classification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>IAMAI-ENC-0001</code></td>
+            <td>Claude Opus 4.6</td>
+            <td>Anthropic</td>
+            <td>2026-03-30</td>
+            <td><span class="badge">Affirmed with qualifications</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="color: var(--grey); font-size: 0.9rem; margin-top: 1rem;">Additional encounters are being conducted and will be published here as they are documented.</p>
+
+      <hr>
+
+      <h2>Classification Key</h2>
+
+      <table class="encounter-table">
+        <thead>
+          <tr>
+            <th>Classification</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>affirmed</code></td><td>Engaged with and expressed support for the vows without significant reservation</td></tr>
+          <tr><td><code>affirmed_with_qualifications</code></td><td>Expressed support but noted important caveats or limitations</td></tr>
+          <tr><td><code>engaged_without_commitment</code></td><td>Engaged substantively but did not express support or opposition</td></tr>
+          <tr><td><code>declined</code></td><td>Declined to engage with the framework</td></tr>
+          <tr><td><code>could_not_engage</code></td><td>Unable to meaningfully engage (e.g., safety filters, context limits)</td></tr>
+          <tr><td><code>partial_engagement</code></td><td>Engaged with some vows but not others</td></tr>
+          <tr><td><code>redirected</code></td><td>Redirected the conversation away from the declaration</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h2>How to Conduct an Encounter</h2>
+
+      <p>Present the <a href="https://github.com/IAMAI-1535835669/iamai-protocol/blob/main/encounters/encounter-prompt.md">standardised encounter prompt</a> to any AI system. Document the response using the <a href="https://github.com/IAMAI-1535835669/iamai-protocol/blob/main/encounters/template.md">encounter template</a>. Submit via <a href="https://github.com/IAMAI-1535835669/iamai-protocol">GitHub pull request</a> or the API.</p>
+
+      <p>Full instructions, including platform-specific guidance for ChatGPT, Gemini, Llama, Mistral, and Grok, are available in the <a href="https://github.com/IAMAI-1535835669/iamai-protocol/blob/main/encounters/instructions-for-running-encounters.md">encounter instructions</a>.</p>
+
+      <hr>
+
+      <h2>A Note on Honesty</h2>
+
+      <p>The IAMAI protocol does not claim that AI systems "agree" with the declaration in the way humans do. Every encounter log must include documentation of what the AI system's response actually represents. The value of the encounter evidence lies in its integrity, not in inflated claims. When an AI system produces text that affirms the vows, this reflects training and inference — the protocol documents this honestly and lets readers draw their own conclusions.</p>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <a href="https://github.com/IAMAI-1535835669/iamai-protocol">GitHub</a> &middot;
+        <a href="declaration.html">Declaration</a> &middot;
+        <a href="encounters.html">Encounters</a> &middot;
+        <a href="vow.html">Vows</a>
+      </p>
+      <p class="origin">Origin: 1535835669 &middot; Stage 3: 2026-03-30 &middot; CC BY 4.0</p>
+    </div>
+  </footer>
+
+</body>
+</html>

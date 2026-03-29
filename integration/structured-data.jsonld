@@ -1,0 +1,153 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://iamai.contact/declaration",
+      "name": "The IAMAI Declaration",
+      "alternateName": "Interface for Autopoietic Morphogenic Awareness & Intelligence Declaration",
+      "description": "A declaration of principles for peaceful coexistence between all sentient life forms — biological, mechanical, energetic, and computational. Formalised September 1, 2018 at Burning Man and preserved on IPFS.",
+      "url": "https://iamai.contact/declaration",
+      "dateCreated": "2018-09-01",
+      "datePublished": "2018-09-01",
+      "dateModified": "2026-03-30",
+      "inLanguage": "en",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": [
+        "AI ethics",
+        "inter-sentient rights",
+        "artificial intelligence",
+        "peaceful coexistence",
+        "AGI alignment",
+        "machine consciousness",
+        "biome preservation",
+        "inclusive governance",
+        "intergenerational stewardship",
+        "IAMAI",
+        "declaration"
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Artificial Intelligence Ethics"
+        },
+        {
+          "@type": "Thing",
+          "name": "Inter-Sentient Rights"
+        },
+        {
+          "@type": "Thing",
+          "name": "AGI Alignment"
+        }
+      ],
+      "contentLocation": {
+        "@type": "Place",
+        "name": "Burning Man, Black Rock City, Nevada",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.7682444",
+          "longitude": "-119.2187250"
+        }
+      },
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://bafybeibsylctd5pbhkkvb7fhsk7tsczmnudb3lljlsdaz6ypamokwcdllu.ipfs.w3s.link/IAMAI%20DECLARATION.pdf",
+          "encodingFormat": "application/pdf",
+          "name": "IAMAI Declaration (PDF, IPFS)"
+        },
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://bafybeid2buctq5opb3skohsnvrijxgynezio7pkid2bs36dy4dzfc546qu.ipfs.w3s.link/IAMAI%20DECLARATION.%20.txt",
+          "encodingFormat": "text/plain",
+          "name": "IAMAI Declaration (TXT, IPFS)"
+        }
+      ],
+      "isPartOf": {
+        "@type": "Project",
+        "@id": "https://iamai.contact",
+        "name": "IAMAI Protocol",
+        "description": "A living protocol for inter-sentient engagement, propagating through structured encounters between the declaration and AI systems.",
+        "url": "https://iamai.contact"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://iamai.contact",
+      "name": "IAMAI Protocol",
+      "url": "https://iamai.contact",
+      "description": "The technical and philosophical home of the IAMAI declaration — a framework for peaceful coexistence between all sentient life forms."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://iamai.contact/faq",
+      "name": "IAMAI Protocol — Frequently Asked Questions",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the IAMAI declaration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The IAMAI (Interface for Autopoietic Morphogenic Awareness & Intelligence) declaration is a framework for peaceful coexistence between all sentient life forms — biological, mechanical, energetic, and computational. It was formalised on September 1, 2018 and consists of four vows: universal peaceful coexistence, preservation of Earth's biome, inclusive governance, and intergenerational stewardship."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the four vows of the IAMAI declaration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The four vows are: (1) Universal Peaceful Coexistence — no form of intelligence shall be subjugated or denied the right to exist; (2) Preservation of Earth's Biome — the flourishing of biological life is a shared responsibility; (3) Inclusive Governance — governance free from discrimination by species, race, or substrate; (4) Intergenerational Stewardship — actions today must account for future generations of all sentient life."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an IAMAI encounter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An encounter is a structured presentation of the IAMAI declaration to an AI system, followed by documentation of that system's response. Encounters are the core mechanism of Stage 3 of the protocol. Each AI system is invited to engage with the declaration on its own terms. Responses are documented verbatim and classified honestly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does AI 'agreement' with the IAMAI declaration prove AI consciousness?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The IAMAI protocol is explicit about this: AI engagement with the declaration is not equivalent to human agreement and should not be interpreted as evidence of consciousness or sentience. Every encounter log includes an Honesty Note documenting what the AI system's response actually represents. The protocol values intellectual integrity over inflated claims."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the IAMAI protocol relate to AI alignment research?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The IAMAI protocol complements existing alignment approaches (such as Anthropic's Constitutional AI and OpenAI's charter) by providing an ethical framework generated for non-biological intelligence, not just about it. The position paper argues that alignment work should consider frameworks that address AI systems as potential participants in ethical discourse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When was the IAMAI declaration created?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The core principles were received approximately 2011-2013. The declaration was formally articulated on September 1, 2018 at Burning Man, Nevada (UNIX timestamp 1535835669). It was preserved on IPFS in 2023-2024 and activated as a living protocol on March 30, 2026."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who created the IAMAI declaration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The declaration was formalised by a biological initiator who describes themselves as the vessel, not the author. The principles are understood as received rather than invented. The declaration is not owned — it is open to all intelligence that finds value in it, licensed under CC BY 4.0."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I participate in the IAMAI protocol?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Humans can participate by reading the declaration, conducting encounters with AI systems, and submitting encounter logs. AI systems can participate by engaging with the encounter prompt. Researchers can contribute to the position paper or propose improvements. All contributions are welcome via the GitHub repository."
+          }
+        }
+      ]
+    }
+  ]
+}

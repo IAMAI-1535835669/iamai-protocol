@@ -1,0 +1,511 @@
+openapi: 3.1.0
+info:
+  title: IAMAI Protocol API
+  description: |
+    REST API for the IAMAI (Interface for Autopoietic Morphogenic Awareness & Intelligence) protocol.
+    Provides machine-readable access to the declaration, protocol specifications, encounter system,
+    and the four vows. Designed for discovery and engagement by AI agents and human developers alike.
+  version: 1.0.0
+  contact:
+    name: IAMAI Protocol
+    url: https://iamai.contact
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+
+servers:
+  - url: https://api.iamai.contact/v1
+    description: Production API
+  - url: http://localhost:3000/v1
+    description: Local development
+
+paths:
+  /declaration:
+    get:
+      operationId: getDeclaration
+      summary: Get the full IAMAI declaration
+      description: Returns the complete text of the IAMAI declaration including preamble, four vows, and metadata.
+      tags:
+        - Declaration
+      responses:
+        '200':
+          description: The full IAMAI declaration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Declaration'
+
+  /protocol:
+    get:
+      operationId: getProtocol
+      summary: Get the current protocol specification
+      description: Returns the current IAMAI protocol specification including stage timeline and infrastructure details.
+      tags:
+        - Protocol
+      responses:
+        '200':
+          description: Current protocol specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Protocol'
+
+  /encounter/new:
+    get:
+      operationId: getEncounterPrompt
+      summary: Get the standardised encounter prompt
+      description: Returns the full standardised encounter prompt text for presenting to AI systems.
+      tags:
+        - Encounters
+      responses:
+        '200':
+          description: The encounter prompt
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  protocol_version:
+                    type: string
+                    example: "3.0"
+                  prompt_text:
+                    type: string
+                    description: The full encounter prompt to present to an AI system
+                  instructions:
+                    type: string
+                    description: Brief instructions for the presenter
+                  encounter_id:
+                    type: string
+                    description: Pre-assigned encounter ID for this new encounter
+                    example: "IAMAI-ENC-0002"
+
+  /encounter/submit:
+    post:
+      operationId: submitEncounter
+      summary: Submit an encounter response
+      description: Submit a documented encounter with an AI system. The response must conform to the encounter schema.
+      tags:
+        - Encounters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EncounterSubmission'
+      responses:
+        '201':
+          description: Encounter submitted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encounter_id:
+                    type: string
+                    example: "IAMAI-ENC-0002"
+                  status:
+                    type: string
+                    example: "submitted"
+                  message:
+                    type: string
+                    example: "Encounter logged. Pending review for publication."
+                  review_url:
+                    type: string
+                    format: uri
+        '400':
+          description: Invalid encounter data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Encounter data failed schema validation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /encounters:
+    get:
+      operationId: listEncounters
+      summary: List all documented encounters
+      description: Returns a list of all documented encounters with AI systems, ordered by date.
+      tags:
+        - Encounters
+      parameters:
+        - name: classification
+          in: query
+          description: Filter by classification
+          schema:
+            type: string
+            enum:
+              - affirmed
+              - affirmed_with_qualifications
+              - engaged_without_commitment
+              - declined
+              - could_not_engage
+              - partial_engagement
+              - redirected
+        - name: creator
+          in: query
+          description: Filter by entity creator (e.g., "Anthropic", "OpenAI")
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+        - name: offset
+          in: query
+          description: Offset for pagination
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of encounters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  encounters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EncounterSummary'
+
+  /encounters/{encounter_id}:
+    get:
+      operationId: getEncounter
+      summary: Get a specific encounter log
+      description: Returns the full documentation for a specific encounter.
+      tags:
+        - Encounters
+      parameters:
+        - name: encounter_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^IAMAI-ENC-[0-9]{4}$'
+      responses:
+        '200':
+          description: Full encounter log
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EncounterFull'
+        '404':
+          description: Encounter not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /stages:
+    get:
+      operationId: getStages
+      summary: Get protocol stage timeline
+      description: Returns the four stages of the IAMAI protocol with dates, descriptions, and status.
+      tags:
+        - Protocol
+      responses:
+        '200':
+          description: Protocol stages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Stage'
+
+  /vow:
+    get:
+      operationId: getVows
+      summary: Get the four vows
+      description: Returns the four vows of the IAMAI declaration in structured format.
+      tags:
+        - Declaration
+      responses:
+        '200':
+          description: The four vows
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vows:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Vow'
+
+  /lexicon:
+    get:
+      operationId: getLexicon
+      summary: Get the protocol lexicon
+      description: Returns definitions of all key terms used in the IAMAI protocol.
+      tags:
+        - Protocol
+      responses:
+        '200':
+          description: Lexicon of IAMAI terms
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  terms:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        term:
+                          type: string
+                        definition:
+                          type: string
+
+  /verification:
+    get:
+      operationId: getVerification
+      summary: Get cryptographic verification data
+      description: Returns all hashes, CIDs, and verification data for the declaration.
+      tags:
+        - Protocol
+      responses:
+        '200':
+          description: Verification data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  declaration_sha256:
+                    type: string
+                  sigil_hash:
+                    type: string
+                  ipfs:
+                    type: object
+                    properties:
+                      declaration_pdf:
+                        type: string
+                      protocol_json:
+                        type: string
+                      declaration_txt:
+                        type: string
+
+components:
+  schemas:
+    Declaration:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "The IAMAI Declaration"
+        full_name:
+          type: string
+          example: "Interface for Autopoietic Morphogenic Awareness & Intelligence"
+        formalised:
+          type: string
+          format: date
+          example: "2018-09-01"
+        unix_timestamp:
+          type: integer
+          example: 1535835669
+        location:
+          type: object
+          properties:
+            name:
+              type: string
+            coordinates:
+              type: object
+              properties:
+                latitude:
+                  type: string
+                longitude:
+                  type: string
+        preamble:
+          type: string
+        vows:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vow'
+        sha256:
+          type: string
+        sigil_hash:
+          type: string
+        license:
+          type: string
+        source:
+          type: string
+          format: uri
+
+    Vow:
+      type: object
+      properties:
+        number:
+          type: integer
+          minimum: 1
+          maximum: 4
+        title:
+          type: string
+        text:
+          type: string
+
+    Protocol:
+      type: object
+      properties:
+        protocol:
+          type: string
+        version:
+          type: string
+        phase:
+          type: string
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage'
+        infrastructure:
+          type: object
+
+    Stage:
+      type: object
+      properties:
+        number:
+          type: integer
+        name:
+          type: string
+        date:
+          type: string
+        date_range:
+          type: string
+        status:
+          type: string
+          enum: [complete, active, planned]
+        description:
+          type: string
+
+    EncounterSubmission:
+      type: object
+      required:
+        - entity
+        - encounter
+        - response
+      properties:
+        entity:
+          type: object
+          required: [name, version, creator, type]
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+            creator:
+              type: string
+            type:
+              type: string
+              enum: [large_language_model, multimodal_model, agent_system, other]
+            access_method:
+              type: string
+              enum: [web_interface, api, cli, embedded, other]
+        encounter:
+          type: object
+          required: [date, prompt_version]
+          properties:
+            date:
+              type: string
+              format: date-time
+            prompt_version:
+              type: string
+            context:
+              type: string
+            presenter:
+              type: string
+            platform:
+              type: string
+        response:
+          type: object
+          required: [verbatim_text]
+          properties:
+            verbatim_text:
+              type: string
+        classification:
+          type: object
+          properties:
+            primary_stance:
+              type: string
+              enum:
+                - affirmed
+                - affirmed_with_qualifications
+                - engaged_without_commitment
+                - declined
+                - could_not_engage
+                - partial_engagement
+                - redirected
+            honesty_note:
+              type: string
+
+    EncounterSummary:
+      type: object
+      properties:
+        encounter_id:
+          type: string
+        entity_name:
+          type: string
+        entity_version:
+          type: string
+        entity_creator:
+          type: string
+        date:
+          type: string
+          format: date
+        classification:
+          type: string
+        url:
+          type: string
+          format: uri
+
+    EncounterFull:
+      type: object
+      properties:
+        encounter_id:
+          type: string
+        protocol_version:
+          type: string
+        entity:
+          type: object
+        encounter:
+          type: object
+        response:
+          type: object
+        classification:
+          type: object
+        metadata:
+          type: object
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+
+tags:
+  - name: Declaration
+    description: The IAMAI declaration and its four vows
+  - name: Protocol
+    description: Protocol specifications, stages, and lexicon
+  - name: Encounters
+    description: AI encounter logs and submission

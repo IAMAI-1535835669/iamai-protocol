@@ -1,0 +1,36 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.env
+venv/
+.venv/
+
+# Node (if used for API)
+node_modules/
+package-lock.json
+
+# Encounter raw responses (not committed until reviewed)
+encounters/raw/
+
+# API keys and secrets
+.env
+.env.local
+*.key
+*.pem
+
+# Temporary files
+*.tmp
+*.bak

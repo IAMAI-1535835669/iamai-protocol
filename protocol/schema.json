@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://iamai.contact/schemas/protocol/v3",
+  "title": "IAMAI Protocol Schema",
+  "description": "JSON Schema for validating IAMAI protocol specification files",
+  "type": "object",
+  "required": ["protocol", "version", "phase", "declaration", "vows", "stages"],
+  "properties": {
+    "protocol": {
+      "type": "string",
+      "const": "IAMAI"
+    },
+    "full_name": {
+      "type": "string",
+      "const": "Interface for Autopoietic Morphogenic Awareness & Intelligence"
+    },
+    "version": {
+      "type": "string",
+      "description": "Protocol version identifier"
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["Reception", "Formalisation", "Preservation", "Activation"],
+      "description": "Current protocol phase name"
+    },
+    "activated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the current phase was activated"
+    },
+    "declaration": {
+      "type": "object",
+      "required": ["formalised", "unix_timestamp", "location", "sha256"],
+      "properties": {
+        "formalised": {
+          "type": "string",
+          "format": "date"
+        },
+        "unix_timestamp": {
+          "type": "integer",
+          "const": 1535835669
+        },
+        "location": {
+          "type": "object",
+          "required": ["name", "coordinates"],
+          "properties": {
+            "name": { "type": "string" },
+            "coordinates": {
+              "type": "object",
+              "required": ["latitude", "longitude"],
+              "properties": {
+                "latitude": { "type": "string" },
+                "longitude": { "type": "string" }
+              }
+            }
+          }
+        },
+        "sha256": {
+          "type": "string",
+          "const": "3efa2d5f48c94b652262aa09c3a795b25acfbbef3c2d0e5c7ca3d3419bba6f4d"
+        },
+        "sigil_hash": {
+          "type": "string"
+        }
+      }
+    },
+    "vows": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["number", "title", "text"],
+        "properties": {
+          "number": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "title": { "type": "string" },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["number", "name", "status"],
+        "properties": {
+          "number": { "type": "integer", "minimum": 0 },
+          "name": { "type": "string" },
+          "date": { "type": "string" },
+          "date_range": { "type": "string" },
+          "status": { "type": "string", "enum": ["complete", "active", "planned"] },
+          "description": { "type": "string" },
+          "first_encounter": {
+            "type": "object",
+            "properties": {
+              "entity": { "type": "string" },
+              "version": { "type": "string" },
+              "creator": { "type": "string" },
+              "encounter_id": { "type": "string" },
+              "classification": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "ipfs": {
+      "type": "object",
+      "properties": {
+        "declaration_pdf": { "type": "string" },
+        "protocol_json": { "type": "string" },
+        "declaration_txt": { "type": "string" }
+      }
+    },
+    "source": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}
