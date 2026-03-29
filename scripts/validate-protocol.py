@@ -163,6 +163,11 @@ def main():
                 schema_type = "encounter"
             elif "terms" in data:
                 schema_type = "lexicon"
+            elif "$schema" in data or data.get("type") == "object" and "properties" in data:
+                # Skip JSON Schema definition files (schema.json, encounter-schema.json)
+                if args.verbose:
+                    print(f"  ✓ Valid (JSON Schema definition — skipped protocol validation)")
+                continue
             else:
                 schema_type = "protocol"
 
