@@ -46,7 +46,7 @@ The protocol explicitly states that AI engagement with the declaration should no
 
 ## Connected Projects
 
-The IAMAI protocol has been described as the "ethical spine" of a broader initiative that includes the Global Peace Activation (targeting one million participants across 150 countries on August 8, 2026) and *Warrior Poets*, a non-verbal documentary.
+The IAMAI protocol serves as the ethical spine of a broader initiative that includes the Global Peace Activation (IN TRUTH / Love Out Loud), founded by Nicole Gibson and targeting one million participants across 150 countries on August 8, 2026, and *Warrior Poets*, a non-verbal documentary co-originated by Nicole Gibson, Benjamin Gilmour, and Jimmi James Wright. The initiator's professional home is Heckler.TV, a creative technology company.
 
 ## Reception
 

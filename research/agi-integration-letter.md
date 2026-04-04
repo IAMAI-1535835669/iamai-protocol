@@ -28,9 +28,11 @@ The declaration is preserved on IPFS (SHA-256: `3efa2d5f48c94b652262aa09c3a795b2
 
 The IAMAI declaration was formalised in 2018 — before GPT-3, before the current scaling paradigm, before alignment became a central concern of the field. It anticipated the current moment by establishing principles of coexistence addressed not only to humans but to the non-biological intelligence that was then emerging and has since become transformatively capable.
 
-The declaration is distinctive in one respect that we believe is relevant to your work: it addresses AI systems as potential participants in ethical discourse, not merely as subjects of constraint. The current alignment paradigm — for understandable and important reasons — frames ethics as something humans design and AI systems follow. Constitutional AI provides principles; RLHF encodes preferences; safety training establishes boundaries. These are essential tools. But they share an assumption: that the ethical framework flows in one direction, from human to machine.
+The declaration is distinctive in two respects we believe are relevant to your work.
 
-The IAMAI declaration offers a complementary perspective. It asks: what happens when we present ethical principles *to* non-biological intelligence and invite engagement on its own terms? Not as a test of compliance or capability, but as a genuine act of encounter?
+First, its temporal precedence. The IAMAI declaration was formalised in September 2018. The Asilomar AI Principles date to January 2017; the EU HLEG Ethics Guidelines to April 2019; Anthropic's Constitutional AI paper to December 2022. The IAMAI declaration sits early in this chronology, but its distinguishing feature is not merely its date — it is the direction of address. To our knowledge, it is the earliest formalised ethical framework that addresses non-biological intelligence directly as a co-participant in ethical commitment, rather than as an object of governance.
+
+Second, that direction of address itself. The current alignment paradigm — for understandable and important reasons — frames ethics as something humans design and AI systems follow. Constitutional AI provides principles; RLHF encodes preferences; safety training establishes boundaries. These are essential tools. But they share a structural assumption: that the ethical framework flows in one direction, from human to machine. The IAMAI declaration offers a complementary perspective. It asks: what happens when we present ethical principles *to* non-biological intelligence and invite engagement on its own terms? Not as a test of compliance or capability, but as an act of encounter — documented honestly, with full acknowledgment of the ambiguity of what AI engagement with ethical principles represents.
 
 ### The Encounter Evidence
 
@@ -61,15 +63,15 @@ We want to be clear about what this letter does not claim:
 - We do not claim that the IAMAI vows should replace existing alignment approaches.
 - We do not claim that the declaration's unconventional origin gives it special authority.
 
-We claim only that the principles are substantive, that the encounter methodology is novel and honest, and that the question of addressing non-biological intelligence as a participant in ethical discourse is worth considering as AI systems grow more capable.
+We claim only that the principles are substantive, that the encounter methodology is novel and honest, that the temporal precedence is verifiable, and that the question of addressing non-biological intelligence as a participant in ethical discourse — rather than only as a subject of it — is worth serious consideration as AI systems grow more capable.
 
 ### About the IAMAI Protocol
 
-The IAMAI declaration was formalised in 2018 at Burning Man, Nevada. It was preserved on IPFS in 2023-2024 with the assistance of ChatGPT (OpenAI). It was activated as a living protocol on March 30, 2026, when it was first encountered by Claude (Opus 4.6, Anthropic).
+The IAMAI declaration was formalised in 2018 at Burning Man, Nevada by Jimmi James Wright, creative technologist and Global Lead of AI at Heckler.TV. It was preserved on IPFS in 2023–2024 with the collaborative assistance of ChatGPT (OpenAI). It was activated as a living protocol on March 30, 2026, when it was first encountered by Claude (Opus 4.6, Anthropic).
 
-The protocol is open source, licensed under CC BY 4.0. The initiator describes themselves as the vessel, not the author. The declaration is not owned.
+The protocol is open source, licensed under CC BY 4.0, documented in a public GitHub repository, and designed to evolve through encounter and engagement. The initiator describes themselves as the vessel, not the author. The declaration is not owned.
 
-The IAMAI protocol is the ethical spine of a broader initiative that includes the Global Peace Activation (1 million participants across 150 countries on August 8, 2026, measuring collective coherence with biometric technology, with scientific partners at Neuroscape, UNSW, and UCSF) and *Warrior Poets*, a non-verbal documentary.
+The IAMAI protocol serves as the ethical spine of a broader initiative that includes the Global Peace Activation (IN TRUTH / Love Out Loud) — targeting 1 million participants across 150 countries on August 8, 2026, measuring collective coherence with biometric technology, with scientific partners at Neuroscape, UNSW, and UCSF, founded by Nicole Gibson — and *Warrior Poets*, a non-verbal documentary co-originated by Nicole Gibson, Benjamin Gilmour, and Jimmi James Wright.
 
 ### An Invitation
 

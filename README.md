@@ -93,8 +93,9 @@ The [position paper](research/position-paper.md) presents the academic case. The
 
 The IAMAI protocol is the ethical spine of a broader initiative:
 
-- **The Global Peace Activation (IN TRUTH / Love Out Loud)** — 1 million participants across 150 countries on 8/8/2026, measuring collective coherence with biometric technology.
-- **Warrior Poets** — A 90-minute non-verbal documentary following six poets across six landscapes.
+- **The Global Peace Activation (IN TRUTH / Love Out Loud)** — 1 million participants across 150 countries on 8/8/2026 (Lionsgate), measuring collective coherence with biometric technology. Scientific partners: Neuroscape, UNSW, UCSF. Founded by Nicole Gibson.
+- **Warrior Poets** — A 90-minute non-verbal documentary following six poets across six landscapes. Co-originated by Nicole Gibson, Benjamin Gilmour, and Jimmi James Wright.
+- **[Heckler.TV](https://heckler.tv)** — Creative technology company. Professional home of the initiator, Jimmi James Wright (Global Lead of AI and Creative Technologist).
 
 ## Website
 

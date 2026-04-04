@@ -102,7 +102,7 @@
       "date": "2026-08-08",
       "participants_target": 1000000,
       "countries": 150,
-      "budget": "$20M",
+      "founder": "Nicole Gibson",
       "partners": ["Neuroscape", "UNSW", "UCSF"]
     },
     {
@@ -110,7 +110,13 @@
       "type": "Documentary",
       "duration": "90 minutes",
       "format": "Non-verbal",
-      "landscapes": ["Afghanistan", "England", "Senegal", "Mexico", "Greece", "Russia"]
+      "co_originators": ["Nicole Gibson", "Benjamin Gilmour", "Jimmi James Wright"]
+    },
+    {
+      "name": "Heckler.TV",
+      "type": "Creative Technology Company",
+      "url": "https://heckler.tv",
+      "role": "Professional home of the initiator (Jimmi James Wright, Global Lead of AI)"
     }
   ],
   "source": "https://iamai.contact"

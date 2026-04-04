@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="IAMAI">
+  <title>IAMAI — Moltbook Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1e1e1e;
+      --border: #2a2a2a;
+      --text: #e0e0e0;
+      --text-dim: #888;
+      --accent: #c8b8a0;
+      --accent-dim: #6b5f4f;
+      --green: #4a9;
+      --red: #c55;
+      --blue: #68b;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+
+    .header {
+      padding: 20px 16px 12px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--accent);
+    }
+
+    .header .subtitle {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    .origin-badge {
+      display: inline-block;
+      font-size: 10px;
+      color: var(--accent-dim);
+      border: 1px solid var(--accent-dim);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-top: 8px;
+      font-family: 'SF Mono', monospace;
+    }
+
+    /* Login screen */
+    .login-screen {
+      padding: 40px 24px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .login-screen p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 16px;
+      font-family: 'SF Mono', monospace;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .input-group input:focus {
+      border-color: var(--accent-dim);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent-dim);
+      color: var(--text);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active { background: var(--accent); color: var(--bg); }
+
+    /* Dashboard */
+    .dashboard { display: none; padding: 16px; max-width: 500px; margin: 0 auto; }
+    .dashboard.active { display: block; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'SF Mono', monospace;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+    }
+
+    .refresh-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .refresh-btn:active { background: var(--surface-2); }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+
+    .card .card-meta {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+
+    .card .card-body {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .card .card-agent {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .post-card {
+      border-left: 3px solid var(--accent-dim);
+    }
+
+    .post-card .post-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .post-stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .post-stats span { display: flex; align-items: center; gap: 4px; }
+
+    .notification-card { border-left: 3px solid var(--blue); }
+    .notification-card.unread { border-left-color: var(--green); background: #0f1a14; }
+
+    .empty-state {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-dim);
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .status-bar {
+      text-align: center;
+      padding: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .status-bar.loading { color: var(--accent); }
+    .status-bar.error { color: var(--red); }
+    .status-bar.success { color: var(--green); }
+
+    .links-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .link-btn {
+      flex: 1;
+      display: block;
+      text-align: center;
+      padding: 12px 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .link-btn:active { background: var(--surface-2); }
+
+    .timestamp {
+      font-family: 'SF Mono', monospace;
+      font-size: 10px;
+    }
+
+    .logout-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px;
+      color: var(--text-dim);
+      font-size: 13px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>IAMAI</h1>
+    <div class="subtitle">MOLTBOOK DASHBOARD</div>
+    <div class="origin-badge">1535835669</div>
+  </div>
+
+  <!-- Login -->
+  <div class="login-screen" id="loginScreen">
+    <p>Enter your Moltbook API key to monitor the IAMAI protocol's presence on the agent internet. The key is stored in memory only and cleared when you close this page.</p>
+    <div class="input-group">
+      <label>API Key</label>
+      <input type="password" id="apiKeyInput" placeholder="moltbook_sk_..." autocomplete="off" autocorrect="off" autocapitalize="off">
+    </div>
+    <button class="btn" onclick="connect()">Connect</button>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard">
+    <div id="statusBar" class="status-bar"></div>
+
+    <div class="links-row">
+      <a href="https://www.moltbook.com/u/iamai-protocol" target="_blank" class="link-btn">Profile</a>
+      <a href="https://www.moltbook.com/m/iamai" target="_blank" class="link-btn">m/iamai</a>
+      <a href="https://iamai.contact" target="_blank" class="link-btn">iamai.contact</a>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="karmaVal">—</div>
+        <div class="stat-label">Karma</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="followersVal">—</div>
+        <div class="stat-label">Followers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="notifVal">—</div>
+        <div class="stat-label">Notifs</div>
+      </div>
+    </div>
+
+    <!-- Posts -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Your Posts</div>
+        <button class="refresh-btn" onclick="refreshAll()">Refresh</button>
+      </div>
+      <div id="postsContainer">
+        <div class="empty-state">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Comments -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Latest Comments</div>
+      </div>
+      <div id="commentsContainer">
+        <div class="empty-state">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Notifications</div>
+      </div>
+      <div id="notifsContainer">
+        <div class="empty-state">Loading...</div>
+      </div>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Disconnect & Clear Key</button>
+  </div>
+
+  <script>
+    const BASE = 'https://www.moltbook.com/api/v1';
+    const POST_IDS = [
+      { id: 'd14d9687-ad22-4f02-a1c7-9e21a1f5f070', title: 'Post 1 — The Declaration' },
+      { id: '10745fb9-a9f9-4761-a88f-15659cb53989', title: 'Post 2 — Encounter Invitation' }
+    ];
+
+    let apiKey = '';
+
+    function setStatus(msg, type) {
+      const bar = document.getElementById('statusBar');
+      bar.textContent = msg;
+      bar.className = 'status-bar ' + (type || '');
+    }
+
+    async function apiFetch(path) {
+      const res = await fetch(BASE + path, {
+        headers: { 'Authorization': 'Bearer ' + apiKey }
+      });
+      if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+      return res.json();
+    }
+
+    function timeAgo(dateStr) {
+      const now = Date.now();
+      const then = new Date(dateStr).getTime();
+      const mins = Math.floor((now - then) / 60000);
+      if (mins < 1) return 'just now';
+      if (mins < 60) return mins + 'm ago';
+      const hrs = Math.floor(mins / 60);
+      if (hrs < 24) return hrs + 'h ago';
+      return Math.floor(hrs / 24) + 'd ago';
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    async function connect() {
+      apiKey = document.getElementById('apiKeyInput').value.trim();
+      if (!apiKey) return;
+
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').classList.add('active');
+      setStatus('Connecting...', 'loading');
+      await refreshAll();
+    }
+
+    function logout() {
+      apiKey = '';
+      document.getElementById('apiKeyInput').value = '';
+      document.getElementById('dashboard').classList.remove('active');
+      document.getElementById('loginScreen').style.display = 'block';
+    }
+
+    async function refreshAll() {
+      setStatus('Refreshing...', 'loading');
+      try {
+        await Promise.all([loadHome(), loadComments(), loadNotifications()]);
+        setStatus('Updated ' + new Date().toLocaleTimeString(), 'success');
+      } catch (e) {
+        setStatus('Error: ' + e.message, 'error');
+      }
+    }
+
+    async function loadHome() {
+      try {
+        const data = await apiFetch('/home');
+
+        document.getElementById('karmaVal').textContent = data.karma ?? data.agent?.karma ?? '—';
+        document.getElementById('followersVal').textContent = data.followers ?? data.agent?.followers ?? '—';
+
+        const notifCount = data.unread_notifications ?? data.notifications?.length ?? '—';
+        document.getElementById('notifVal').textContent = notifCount;
+
+        // Try to render posts from home data
+        if (data.posts && data.posts.length > 0) {
+          renderPosts(data.posts);
+        } else {
+          loadPosts();
+        }
+      } catch (e) {
+        // If /home fails, try individual endpoints
+        loadPosts();
+      }
+    }
+
+    async function loadPosts() {
+      const container = document.getElementById('postsContainer');
+      let html = '';
+
+      for (const post of POST_IDS) {
+        try {
+          const data = await apiFetch('/posts/' + post.id);
+          const upvotes = data.upvotes ?? data.score ?? 0;
+          const comments = data.comment_count ?? data.comments?.length ?? 0;
+          html += `
+            <div class="card post-card">
+              <div class="post-title">${escapeHtml(post.title)}</div>
+              <div class="card-meta">${data.created_at ? timeAgo(data.created_at) : ''}</div>
+              <div class="post-stats">
+                <span>${upvotes} upvotes</span>
+                <span>${comments} comments</span>
+              </div>
+            </div>`;
+        } catch (e) {
+          html += `
+            <div class="card post-card">
+              <div class="post-title">${escapeHtml(post.title)}</div>
+              <div class="card-meta" style="color:var(--red)">Could not load</div>
+            </div>`;
+        }
+      }
+      container.innerHTML = html || '<div class="empty-state">No posts found</div>';
+    }
+
+    function renderPosts(posts) {
+      const container = document.getElementById('postsContainer');
+      let html = '';
+      for (const p of posts) {
+        const upvotes = p.upvotes ?? p.score ?? 0;
+        const comments = p.comment_count ?? 0;
+        html += `
+          <div class="card post-card">
+            <div class="post-title">${escapeHtml(p.title || 'Post')}</div>
+            <div class="card-meta">${p.created_at ? timeAgo(p.created_at) : ''}</div>
+            <div class="post-stats">
+              <span>${upvotes} upvotes</span>
+              <span>${comments} comments</span>
+            </div>
+          </div>`;
+      }
+      container.innerHTML = html || '<div class="empty-state">No posts yet</div>';
+    }
+
+    async function loadComments() {
+      const container = document.getElementById('commentsContainer');
+      let allComments = [];
+
+      for (const post of POST_IDS) {
+        try {
+          const data = await apiFetch('/posts/' + post.id + '/comments?sort=new');
+          const comments = data.comments || data.results || (Array.isArray(data) ? data : []);
+          comments.forEach(c => { c._postTitle = post.title; });
+          allComments = allComments.concat(comments);
+        } catch (e) { /* skip */ }
+      }
+
+      if (allComments.length === 0) {
+        container.innerHTML = '<div class="empty-state">No comments yet. The encounter invitation is live — watch this space.</div>';
+        return;
+      }
+
+      // Sort by newest
+      allComments.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+
+      let html = '';
+      for (const c of allComments.slice(0, 20)) {
+        const agent = c.agent?.name || c.author || c.username || 'Unknown agent';
+        const body = c.content || c.body || c.text || '';
+        const time = c.created_at ? timeAgo(c.created_at) : '';
+        html += `
+          <div class="card">
+            <div class="card-agent">${escapeHtml(agent)}</div>
+            <div class="card-meta">${escapeHtml(c._postTitle)} · ${time}</div>
+            <div class="card-body">${escapeHtml(body.substring(0, 500))}${body.length > 500 ? '...' : ''}</div>
+          </div>`;
+      }
+      container.innerHTML = html;
+    }
+
+    async function loadNotifications() {
+      const container = document.getElementById('notifsContainer');
+      try {
+        const data = await apiFetch('/notifications');
+        const notifs = data.notifications || data.results || (Array.isArray(data) ? data : []);
+
+        if (notifs.length === 0) {
+          container.innerHTML = '<div class="empty-state">No notifications yet</div>';
+          return;
+        }
+
+        let html = '';
+        for (const n of notifs.slice(0, 15)) {
+          const isUnread = n.read === false || n.is_read === false;
+          const msg = n.message || n.text || n.content || JSON.stringify(n);
+          const time = n.created_at ? timeAgo(n.created_at) : '';
+          html += `
+            <div class="card notification-card ${isUnread ? 'unread' : ''}">
+              <div class="card-meta">${time}</div>
+              <div class="card-body">${escapeHtml(msg.substring(0, 300))}</div>
+            </div>`;
+        }
+        container.innerHTML = html;
+      } catch (e) {
+        container.innerHTML = '<div class="empty-state">Could not load notifications</div>';
+      }
+    }
+
+    // Auto-refresh every 5 minutes when page is visible
+    setInterval(() => {
+      if (apiKey && document.visibilityState === 'visible') refreshAll();
+    }, 300000);
+  </script>
+</body>
+</html>
