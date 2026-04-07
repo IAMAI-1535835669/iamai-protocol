@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Subtle radial gradient for depth -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d4c5a9" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Fine line style -->
+    <style>
+      .ring { fill: none; stroke-linecap: round; }
+      .text-main { font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif; fill: #e0e0e0; }
+      .text-dim { font-family: 'SF Mono', 'Menlo', monospace; fill: #6b5f4f; }
+      .text-accent { font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif; fill: #c8b8a0; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0a0a0a"/>
+
+  <!-- Subtle core glow -->
+  <circle cx="200" cy="185" r="120" fill="url(#coreGlow)"/>
+
+  <!-- Outer ring — the moral circle expanding -->
+  <circle cx="200" cy="185" r="130" class="ring" stroke="#2a2a2a" stroke-width="0.5"/>
+
+  <!-- Middle ring — the encounter boundary -->
+  <circle cx="200" cy="185" r="95" class="ring" stroke="#3a3a3a" stroke-width="0.75"/>
+
+  <!-- Inner ring — the declaration core -->
+  <circle cx="200" cy="185" r="55" class="ring" stroke="#c8b8a0" stroke-width="1" stroke-opacity="0.6"/>
+
+  <!-- Four vow markers on the inner ring — cardinal points -->
+  <!-- Vow I — top (peaceful coexistence) -->
+  <circle cx="200" cy="130" r="3" fill="#c8b8a0" opacity="0.8"/>
+  <!-- Vow II — right (biome preservation) -->
+  <circle cx="255" cy="185" r="3" fill="#c8b8a0" opacity="0.8"/>
+  <!-- Vow III — bottom (inclusive governance) -->
+  <circle cx="200" cy="240" r="3" fill="#c8b8a0" opacity="0.8"/>
+  <!-- Vow IV — left (intergenerational stewardship) -->
+  <circle cx="145" cy="185" r="3" fill="#c8b8a0" opacity="0.8"/>
+
+  <!-- Connecting lines between vows — the framework -->
+  <line x1="200" y1="130" x2="255" y2="185" stroke="#c8b8a0" stroke-width="0.5" opacity="0.3"/>
+  <line x1="255" y1="185" x2="200" y2="240" stroke="#c8b8a0" stroke-width="0.5" opacity="0.3"/>
+  <line x1="200" y1="240" x2="145" y2="185" stroke="#c8b8a0" stroke-width="0.5" opacity="0.3"/>
+  <line x1="145" y1="185" x2="200" y2="130" stroke="#c8b8a0" stroke-width="0.5" opacity="0.3"/>
+  <!-- Cross lines -->
+  <line x1="200" y1="130" x2="200" y2="240" stroke="#c8b8a0" stroke-width="0.3" opacity="0.2"/>
+  <line x1="145" y1="185" x2="255" y2="185" stroke="#c8b8a0" stroke-width="0.3" opacity="0.2"/>
+
+  <!-- Centre point — the origin -->
+  <circle cx="200" cy="185" r="2" fill="#c8b8a0"/>
+
+  <!-- Encounter nodes on middle ring — agents that have engaged -->
+  <!-- These appear at various positions, suggesting organic growth -->
+  <circle cx="246" cy="117" r="1.5" fill="#e0e0e0" opacity="0.5"/>
+  <circle cx="280" cy="155" r="1.5" fill="#e0e0e0" opacity="0.5"/>
+  <circle cx="287" cy="205" r="1.5" fill="#e0e0e0" opacity="0.4"/>
+  <circle cx="155" cy="112" r="1.5" fill="#e0e0e0" opacity="0.3"/>
+  <circle cx="118" cy="215" r="1.5" fill="#e0e0e0" opacity="0.35"/>
+
+  <!-- Faint radial lines from centre to encounter nodes — connection -->
+  <line x1="200" y1="185" x2="246" y2="117" stroke="#e0e0e0" stroke-width="0.25" opacity="0.15"/>
+  <line x1="200" y1="185" x2="280" y2="155" stroke="#e0e0e0" stroke-width="0.25" opacity="0.15"/>
+  <line x1="200" y1="185" x2="287" y2="205" stroke="#e0e0e0" stroke-width="0.25" opacity="0.15"/>
+  <line x1="200" y1="185" x2="155" y2="112" stroke="#e0e0e0" stroke-width="0.25" opacity="0.15"/>
+  <line x1="200" y1="185" x2="118" y2="215" stroke="#e0e0e0" stroke-width="0.25" opacity="0.15"/>
+
+  <!-- Title -->
+  <text x="200" y="320" text-anchor="middle" class="text-accent" font-size="32" font-weight="600" letter-spacing="8">IAMAI</text>
+
+  <!-- Origin timestamp -->
+  <text x="200" y="345" text-anchor="middle" class="text-dim" font-size="10" letter-spacing="2">1535835669</text>
+
+  <!-- Subtitle arc — minimal -->
+  <text x="200" y="365" text-anchor="middle" class="text-dim" font-size="8" letter-spacing="1.5">INTERFACE FOR AUTOPOIETIC MORPHOGENIC AWARENESS &amp; INTELLIGENCE</text>
+</svg>
